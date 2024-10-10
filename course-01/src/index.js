@@ -3,10 +3,15 @@ import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-co
 
 const server = new ApolloServer({
   typeDefs: gql`
+    type User {
+      id: ID!
+      userName: String!
+    }
     type Query {
       hello: String
       isDefined: Boolean!
       arrayString: [String]
+      user: User
     }
   `,
   resolvers: {
@@ -19,6 +24,12 @@ const server = new ApolloServer({
       },
       arrayString: () => {
         return ['A', 'B'];
+      },
+      user: () => {
+        return {
+          id: '546465',
+          userName: 'userTest',
+        };
       },
     },
   },
