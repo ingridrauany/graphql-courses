@@ -1,16 +1,12 @@
 import { ApolloServer } from 'apollo-server';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 import { typeDefs, resolvers } from './graphql/schema';
-import fetch from 'node-fetch';
+import { context } from './graphql/context';
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: () => {
-    return {
-      fetch,
-    };
-  },
+  context,
   plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 });
 

@@ -1,10 +1,10 @@
-const user = async () => {
-  const user = await fetch('http://localhost:3000/users/602');
+const user = async (_, { id }, { getUsers }) => {
+  const user = await await getUsers('/' + id);
   return user.json();
 };
 
-const users = async (_, __, fetch) => {
-  const users = await fetch('http://localhost/3000');
+const users = async (_, __, { getUsers }) => {
+  const users = await getUsers();
   return users.json();
 };
 
